@@ -18,7 +18,7 @@ public class ProductService {
         productPo.setName(product.getName());
         productPo.setPrice(product.getPrice());
         productPo.setUnit(product.getUnit());
-        productPo.setUnit(product.getUrl());
+        productPo.setUrl(product.getUrl());
         productRepository.save(productPo);
     }
 }
