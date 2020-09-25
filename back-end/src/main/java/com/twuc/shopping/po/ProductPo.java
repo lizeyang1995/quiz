@@ -1,23 +1,35 @@
-package com.twuc.shopping.domain;
+package com.twuc.shopping.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "product")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
-    @NotNull
+public class ProductPo {
+    @Id
+    @GeneratedValue
+    private int id;
     private String name;
-    @NotNull
     private int price;
-    @NotNull
     private String unit;
-    @NotNull
     private String url;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
