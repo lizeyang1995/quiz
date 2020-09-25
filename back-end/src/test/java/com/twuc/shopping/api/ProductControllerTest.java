@@ -12,13 +12,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,5 +46,21 @@ public class ProductControllerTest {
 
         List<ProductPo> allProducts = productRepository.findAll();
         assertEquals(1, allProducts.size());
+    }
+
+    @Test
+    void should_get_all_product() throws Exception {
+        ProductPo productPo = new ProductPo();
+        productPo.setName("可乐");
+        productPo.setPrice(5);
+        productPo.setUnit("瓶");
+        productPo.setUrl("uuu");
+        productRepository.save(productPo);
+        mockMvc.perform(get("/products"))
+                .andExpect(jsonPath("$[0].name", is("可乐")))
+                .andExpect(jsonPath("$[0].price", is(5.0)))
+                .andExpect(jsonPath("$[0].unit", is("瓶")))
+                .andExpect(jsonPath("$[0].url", is("uuu")))
+                .andExpect(status().isOk());
     }
 }
