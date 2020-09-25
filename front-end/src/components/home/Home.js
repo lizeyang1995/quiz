@@ -31,7 +31,9 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        
+        {this.state.product.map((item) => (
+          <div></div>
+        ))}
       </div>
     );
   }
