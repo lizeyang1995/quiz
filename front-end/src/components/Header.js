@@ -10,7 +10,7 @@ class Header extends Component {
           <Link className='link' to='/'>商城</Link>
         </p>
         <p>
-          <Link className='link' to='/order'>订单</Link>
+          <Link className='link' to='/orders'>订单</Link>
         </p>
         <p>
           <Link className='link' to='/product'>添加商品</Link>
