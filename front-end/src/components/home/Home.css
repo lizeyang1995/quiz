@@ -1,0 +1,7 @@
+.home-body {
+  float: left;
+  padding: 50px;
+}
+.home-body section {
+  border: 1px solid lightgray;
+}

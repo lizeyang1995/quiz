@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Product from '../Product';
+import './Home.css';
 
 let myHeaders = new Headers({
   'Access-Control-Allow-Origin': '*',
@@ -31,9 +33,11 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        {this.state.product.map((item) => (
-          <div></div>
-        ))}
+        <section className='home-body'>
+          {this.state.product.map((item) => (
+            <Product key={item.name} name={item.name} price={item.price} unit={item.unit} url={item.url} />
+          ))}
+        </section>
       </div>
     );
   }
