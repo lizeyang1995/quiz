@@ -10,6 +10,15 @@ class OrderList extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   const data = this.props.location.state
+  //   this.setState({
+  //     product: data,
+  //     noProduct:false,
+  //   })
+  //   console.log(data)
+  // }
+
   render() {
     return (
       <div className="orders">
@@ -23,12 +32,12 @@ class OrderList extends Component {
               <th>操作</th>
           </tr>
           {this.state.product.map((item) => (
-            <tr>
+            <tr key={item.name}>
               <th>{item.name}</th>
               <th>{item.price}</th>
               <th>{item.count}</th>
               <th>{item.unit}</th>
-              <th><button>删除</button></th>
+              <th>{!this.state.noProduct && <button>删除</button>}</th>
             </tr>
           ))}
         </table>

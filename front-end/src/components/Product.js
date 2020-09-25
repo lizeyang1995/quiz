@@ -3,7 +3,23 @@ import React from 'react';
 class Product extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      product:{
+        count:0,
+      }
+    };
+  }
+
+  addProduct = () => {
+    this.setState({
+      product:{
+        name:this.props.name,
+        price:this.props.price,
+        unit:this.props.unit,
+        count:this.state.count + 1
+      }
+    })
+    this.context.router.history.push('/orders', this.state.product);
   }
 
   render() {
@@ -11,7 +27,8 @@ class Product extends React.Component {
       <section>
         <img className="image" alt="product" src={this.props.url}></img>
         <h2>{this.props.name}</h2>
-        <h3>单价{this.props.price}元/{this.props.unit}</h3>
+        <p>单价{this.props.price}元/{this.props.unit}</p>
+        <button onChange={this.addProduct}>+</button>
       </section>
     );
   }
