@@ -22,8 +22,7 @@ class OrderList extends Component {
   render() {
     return (
       <div className="orders">
-        <table  width="500" height="50" align="center" 
-             cellspacing="5" cellpadding="5">
+        <table  width="500" height="50" align="center" >
           <tr>
               <th>名字</th>
               <th>单价</th>
