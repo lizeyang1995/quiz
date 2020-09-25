@@ -34,7 +34,11 @@ public class ProductControllerTest {
 
     @Test
     void should_add_product() throws Exception {
-        Product product = Product.builder().name("可乐").price(5).unit("瓶").url("aaa").build();
+        Product product = new Product();
+        product.setName("可乐");
+        product.setPrice(5);
+        product.setUnit("瓶");
+        product.setUrl("uuu");
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(product);
         mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))

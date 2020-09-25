@@ -16,7 +16,7 @@ public class Product {
     private String name;
     @NotNull
     @Valid
-    private int price;
+    private double price;
     @NotNull
     @Valid
     private String unit;
@@ -32,11 +32,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
