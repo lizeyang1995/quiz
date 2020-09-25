@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Builder
@@ -11,12 +12,16 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class Product {
     @NotNull
+    @Valid
     private String name;
     @NotNull
+    @Valid
     private int price;
     @NotNull
+    @Valid
     private String unit;
     @NotNull
+    @Valid
     private String url;
 
     public String getName() {
