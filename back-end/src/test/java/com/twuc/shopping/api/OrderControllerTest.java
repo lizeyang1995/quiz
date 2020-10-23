@@ -49,4 +49,18 @@ public class OrderControllerTest {
         mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    void should_throw_error_when_value_is_null() throws Exception {
+        Order order = Order.builder()
+                .name("可乐")
+                .price(BigDecimal.valueOf(5.00))
+                .unit(null)
+                .count(BigDecimal.valueOf(1))
+                .build();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(order);
+        mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }
