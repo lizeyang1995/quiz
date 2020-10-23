@@ -80,6 +80,19 @@ public class ProductControllerTest {
     }
 
     @Test
+    void should_throw_error_when_value_is_null() throws Exception {
+        Product product = new Product();
+        product.setName("可乐");
+        product.setPrice(BigDecimal.valueOf(5.0));
+        product.setUnit(null);
+        product.setUrl("uuu");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(product);
+        mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void should_get_all_product() throws Exception {
         ProductPo productPo = new ProductPo();
         productPo.setName("可乐");
