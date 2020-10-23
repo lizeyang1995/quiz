@@ -50,6 +50,19 @@ public class ProductControllerTest {
     }
 
     @Test
+    void should_not_add_product_when_product_name_exist() throws Exception {
+        Product product = new Product();
+        product.setName("可乐");
+        product.setPrice(BigDecimal.valueOf(5.0));
+        product.setUnit("瓶");
+        product.setUrl("uuu");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(product);
+        mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void should_get_all_product() throws Exception {
         ProductPo productPo = new ProductPo();
         productPo.setName("可乐");
