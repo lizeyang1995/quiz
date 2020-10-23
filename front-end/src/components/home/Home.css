@@ -1,7 +1,20 @@
 .home-body {
-  float: left;
+  display: flex;
   padding: 50px;
 }
 .home-body section {
+  margin: 10px;
+  padding: 20px 0;
   border: 1px solid lightgray;
+}
+
+.home-body section .add-button {
+  border-radius: 50%;
+  border: solid 1px dimgray;
+  margin-left: 116px;
+  margin-right: 16px;
+}
+
+.home-body section p {
+  color: dimgray;
 }

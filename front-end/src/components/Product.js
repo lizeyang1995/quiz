@@ -26,9 +26,9 @@ class Product extends React.Component {
     return (
       <section>
         <img className="image" alt="product" src={this.props.url}></img>
-        <h2>{this.props.name}</h2>
+        <h3>{this.props.name}</h3>
         <p>单价{this.props.price}元/{this.props.unit}</p>
-        <button onChange={this.addProduct}>+</button>
+        <button onChange={this.addProduct} className="add-button">+</button>
       </section>
     );
   }
