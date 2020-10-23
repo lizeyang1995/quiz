@@ -72,6 +72,14 @@ public class ProductControllerTest {
     }
 
     @Test
+    void should_throw_error_when_request_is_null() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(null);
+        mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void should_get_all_product() throws Exception {
         ProductPo productPo = new ProductPo();
         productPo.setName("可乐");
