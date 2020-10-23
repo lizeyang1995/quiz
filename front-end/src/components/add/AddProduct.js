@@ -67,7 +67,7 @@ class AddProduct extends Component {
             <h3>图片:</h3>
             <input placeholder='URL' onChange={this.handleChange} name='url' value={this.state.url}></input>
           </section>
-          <button disabled={!this.state.name || !this.state.price || !this.state.unit || !this.state.url} onClick={this.submit}>提交</button>
+          <button disabled={!this.state.name || !this.state.price || !this.state.unit || !this.state.url || isNaN(this.state.price)} onClick={this.submit}>提交</button>
         </form>
         <footer>TW Mall 2018 Create by ForCheng</footer>
       </div>
