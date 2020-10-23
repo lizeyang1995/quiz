@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Modal, Button } from 'antd';
 import './AddProduct.css';
 
 let myHeaders = new Headers({
@@ -14,7 +15,8 @@ class AddProduct extends Component {
       name:'',
       price:'',
       unit:'',
-      url:''
+      url:'',
+      visible: false
     }
   }
 
@@ -29,18 +31,30 @@ class AddProduct extends Component {
       method:'POST',
       headers: myHeaders,
       mode: 'cors',
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        name:this.state.name,
+        price:this.state.price,
+        unit:this.state.unit,
+        url:this.state.url,
+      })
   })
   .then((res)=>res.json())
   .then((data)=>{
-    console.log("")
+    this.setState({
+      visible: data
+    })
   })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
   }
-    
+
+  handleOk = (e) => {
+    this.setState({
+      visible: false,
+    });
+  }
 
   render() {
     return (
@@ -70,6 +84,16 @@ class AddProduct extends Component {
           <button disabled={!this.state.name || !this.state.price || !this.state.unit || !this.state.url || isNaN(this.state.price)} onClick={this.submit}>提交</button>
         </form>
         <footer>TW Mall 2018 Create by ForCheng</footer>
+
+        <Modal
+          title="Basic Modal"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleOk}
+        >
+          <p>商品名称已存在，请输入新的商品名称</p>
+        </Modal>
+
       </div>
     );
   }

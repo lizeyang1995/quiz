@@ -25,9 +25,9 @@ public class ProductService {
             productPo.setUnit(product.getUnit());
             productPo.setUrl(product.getUrl());
             productRepository.save(productPo);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private boolean hasProduct(Product product) {
