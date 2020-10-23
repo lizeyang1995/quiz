@@ -10,15 +10,6 @@ class OrderList extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   const data = this.props.location.state
-  //   this.setState({
-  //     product: data,
-  //     noProduct:false,
-  //   })
-  //   console.log(data)
-  // }
-
   render() {
     return (
       <div className="orders">
