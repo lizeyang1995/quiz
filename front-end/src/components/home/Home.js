@@ -27,26 +27,33 @@ class Home extends Component {
     })
     .then((res)=>res.json())
     .then((data)=>{
-      console.log(data)
-      // const newOrders = this.mergeSameOrder(data)
+      const newOrders = this.mergeSameOrder(data)
       this.setState({
-        orderList:data,
+        orderList:newOrders,
         visible: true
       })
     })
   }
 
-  // mergeSameOrder = (data) => {
-  //   const newOrders = [];
-  //   for (let i = 0; i < data.length; i++) {
-  //     for (let j = 0; i < newOrders.length; j++) {
-  //       if (data[i].name === newOrders[j].name) {
-  //         newOrders[j].count++
-  //       }
-  //     }
-  //     newOrders.push(data[i])
-  //   }
-  // }
+  mergeSameOrder = (data) => {
+    console.log(data)
+    const newOrders = [];
+    for (let i = 0; i < data.length; i++) {
+      let existSame = false;
+      for (let j = 0; j < newOrders.length; j++) {
+        if (data[i].name === newOrders[j].name) {
+          newOrders[j].count++
+          existSame = true
+          break
+        }
+      }
+      if(!existSame) {
+        newOrders.push(data[i])
+      }
+      console.log('newOrders:', newOrders)
+    }
+    return newOrders
+  }
 
   handleOk = (e) => {
     this.setState({
