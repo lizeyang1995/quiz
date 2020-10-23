@@ -41,4 +41,12 @@ public class OrderControllerTest {
         mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    void should_throw_error_when_give_null() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(null);
+        mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }
