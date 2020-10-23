@@ -37,6 +37,7 @@ class Home extends Component {
             <Product key={item.name} name={item.name} price={item.price} unit={item.unit} url={item.url} />
           ))}
         </section>
+        <button>购物车</button>
       </div>
     );
   }

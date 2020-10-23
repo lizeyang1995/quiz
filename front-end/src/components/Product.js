@@ -1,25 +1,48 @@
 import React from 'react';
 
+let myHeaders = new Headers({
+  'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+});
+let api = 'http://localhost:8080/order';
 class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product:{
         count:0,
-      }
+      },
+      disableButton: ''
     };
   }
 
   addProduct = () => {
     this.setState({
-      product:{
+      disableButton: true
+    })
+    fetch(api,{
+      method:'POST',
+      headers: myHeaders,
+      mode: 'cors',
+      body: JSON.stringify({
         name:this.props.name,
         price:this.props.price,
         unit:this.props.unit,
-        count:this.state.count + 1
-      }
+        count:1,
+      })
     })
-    this.context.router.history.push('/orders', this.state.product);
+    .then((res)=>res.json())
+    .then(()=>{
+      this.setState({
+        disableButton: ''
+      })
+    })
+    .catch(() => {
+      this.setState({
+        disableButton: ''
+      })
+    })
   }
 
   render() {
@@ -28,7 +51,7 @@ class Product extends React.Component {
         <img className="image" alt="product" src={this.props.url}></img>
         <h3>{this.props.name}</h3>
         <p>单价{this.props.price}元/{this.props.unit}</p>
-        <button onChange={this.addProduct} className="add-button">+</button>
+        <button onClick={this.addProduct} className="add-button" disabled={this.state.disableButton}>+</button>
       </section>
     );
   }
