@@ -86,7 +86,7 @@ class AddProduct extends Component {
         <footer>TW Mall 2018 Create by ForCheng</footer>
 
         <Modal
-          title="Basic Modal"
+          title="提示"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleOk}

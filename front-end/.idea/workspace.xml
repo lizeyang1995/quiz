@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1004c360-20ea-4bc9-813a-bbf2fa078197" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/com/twuc/shopping/api/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/com/twuc/shopping/api/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/main/java/com/twuc/shopping/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/main/java/com/twuc/shopping/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back-end/src/test/java/com/twuc/shopping/api/OrderControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back-end/src/test/java/com/twuc/shopping/api/OrderControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="1004c360-20ea-4bc9-813a-bbf2fa078197" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +159,7 @@
       <workItem from="1603418756277" duration="79000" />
       <workItem from="1603420194289" duration="41000" />
       <workItem from="1603424615317" duration="38000" />
-      <workItem from="1603424947024" duration="600000" />
+      <workItem from="1603424947024" duration="674000" />
     </task>
     <task id="LOCAL-00001" summary="[lizeyang] feat: push old version">
       <created>1603413820693</created>
@@ -218,7 +214,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1595000" />
+    <option name="totallyTimeSpent" value="1669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
