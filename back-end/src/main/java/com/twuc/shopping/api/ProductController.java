@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -17,6 +18,9 @@ public class ProductController {
 
     @PostMapping("/product")
     public ResponseEntity addProduct(@RequestBody @Valid Product product) {
+        if (Objects.isNull(product)) {
+            throw new RuntimeException();
+        }
         return ResponseEntity.ok(productService.addProduct(product));
     }
 
