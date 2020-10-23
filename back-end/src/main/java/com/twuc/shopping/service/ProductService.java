@@ -16,13 +16,22 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void addProduct(Product product) {
-        ProductPo productPo = new ProductPo();
-        productPo.setName(product.getName());
-        productPo.setPrice(product.getPrice());
-        productPo.setUnit(product.getUnit());
-        productPo.setUrl(product.getUrl());
-        productRepository.save(productPo);
+    public boolean addProduct(Product product) {
+        boolean productExist = hasProduct(product);
+        if (!productExist) {
+            ProductPo productPo = new ProductPo();
+            productPo.setName(product.getName());
+            productPo.setPrice(product.getPrice());
+            productPo.setUnit(product.getUnit());
+            productPo.setUrl(product.getUrl());
+            productRepository.save(productPo);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasProduct(Product product) {
+        return productRepository.findByName(product.getName()).size() >= 1;
     }
 
     public List<Product> getAllProducts() {

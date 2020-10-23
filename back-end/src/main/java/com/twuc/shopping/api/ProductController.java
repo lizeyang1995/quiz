@@ -17,8 +17,7 @@ public class ProductController {
 
     @PostMapping("/product")
     public ResponseEntity addProduct(@RequestBody @Valid Product product) {
-        productService.addProduct(product);
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.ok(productService.addProduct(product));
     }
 
     @GetMapping("/products")

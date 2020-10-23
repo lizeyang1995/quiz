@@ -43,7 +43,7 @@ public class ProductControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(product);
         mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
 
         List<ProductPo> allProducts = productRepository.findAll();
         assertEquals(1, allProducts.size());
@@ -56,10 +56,19 @@ public class ProductControllerTest {
         product.setPrice(BigDecimal.valueOf(5.0));
         product.setUnit("瓶");
         product.setUrl("uuu");
+        ProductPo productPo = new ProductPo();
+        productPo.setName(product.getName());
+        productPo.setPrice(product.getPrice());
+        productPo.setUnit(product.getUnit());
+        productPo.setUrl(product.getUrl());
+        productRepository.save(productPo);
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(product);
         mockMvc.perform(post("/product").content(jsonString).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isOk());
+
+        List<ProductPo> allProducts = productRepository.findAll();
+        assertEquals(1, allProducts.size());
     }
 
     @Test
