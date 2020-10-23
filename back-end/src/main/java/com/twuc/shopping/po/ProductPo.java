@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "product")
@@ -19,7 +20,7 @@ public class ProductPo {
     @GeneratedValue
     private int id;
     private String name;
-    private double price;
+    private BigDecimal price;
     private String unit;
     private String url;
 
@@ -39,11 +40,11 @@ public class ProductPo {
         this.name = name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

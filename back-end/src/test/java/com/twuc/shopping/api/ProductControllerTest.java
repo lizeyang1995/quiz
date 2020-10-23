@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ public class ProductControllerTest {
     void should_add_product() throws Exception {
         Product product = new Product();
         product.setName("可乐");
-        product.setPrice(5);
+        product.setPrice(BigDecimal.valueOf(5.0));
         product.setUnit("瓶");
         product.setUrl("uuu");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -52,7 +53,7 @@ public class ProductControllerTest {
     void should_get_all_product() throws Exception {
         ProductPo productPo = new ProductPo();
         productPo.setName("可乐");
-        productPo.setPrice(5);
+        productPo.setPrice(BigDecimal.valueOf(5));
         productPo.setUnit("瓶");
         productPo.setUrl("uuu");
         productRepository.save(productPo);

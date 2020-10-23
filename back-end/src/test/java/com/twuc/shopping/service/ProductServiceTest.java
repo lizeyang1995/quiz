@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.math.BigDecimal;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -25,7 +27,7 @@ public class ProductServiceTest {
     void should_add_success() {
         Product product = new Product();
         product.setName("可乐");
-        product.setPrice(5);
+        product.setPrice(BigDecimal.valueOf(5));
         product.setUnit("瓶");
         product.setUrl("uuu");
         ProductPo productPo = new ProductPo();
