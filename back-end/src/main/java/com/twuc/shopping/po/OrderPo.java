@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "orderList")
@@ -24,5 +25,5 @@ public class OrderPo {
     private String name;
     private BigDecimal price;
     private String unit;
-    private BigDecimal count;
+    private BigInteger count;
 }

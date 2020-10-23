@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Builder
 @Data
@@ -25,5 +26,5 @@ public class Order {
     private String unit;
     @NotNull
     @Valid
-    private BigDecimal count;
+    private BigInteger count;
 }

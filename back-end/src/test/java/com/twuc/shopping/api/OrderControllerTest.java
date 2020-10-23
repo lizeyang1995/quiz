@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +35,7 @@ public class OrderControllerTest {
                             .name("可乐")
                             .price(BigDecimal.valueOf(5.00))
                             .unit("瓶")
-                            .count(BigDecimal.valueOf(1))
+                            .count(BigInteger.valueOf(1))
                             .build();
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(order);
@@ -56,7 +57,7 @@ public class OrderControllerTest {
                 .name("可乐")
                 .price(BigDecimal.valueOf(5.00))
                 .unit(null)
-                .count(BigDecimal.valueOf(1))
+                .count(BigInteger.valueOf(1))
                 .build();
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(order);
