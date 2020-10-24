@@ -5,10 +5,13 @@ import './Home.css';
 
 let myHeaders = new Headers({
   'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'text/plain'
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
 });
 let api = 'http://localhost:8080/products';
 let getAllOrderApi = 'http://localhost:8080/orders';
+let addOrderApi = 'http://localhost:8080/order';
+let deleteAllOrderApi = 'http://localhost:8080/orders';
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -36,7 +39,6 @@ class Home extends Component {
   }
 
   mergeSameOrder = (data) => {
-    console.log(data)
     const newOrders = [];
     for (let i = 0; i < data.length; i++) {
       let existSame = false;
@@ -50,7 +52,6 @@ class Home extends Component {
       if(!existSame) {
         newOrders.push(data[i])
       }
-      console.log('newOrders:', newOrders)
     }
     return newOrders
   }
@@ -59,6 +60,35 @@ class Home extends Component {
     this.setState({
       visible: false,
     });
+  }
+
+  addProduct = (product) => {
+    fetch(addOrderApi,{
+      method:'POST',
+      headers: myHeaders,
+      mode: 'cors',
+      body: JSON.stringify({
+        name:product.name,
+        price:product.price,
+        unit:product.unit,
+        count:1,
+      })
+    })
+    .then((res)=>res.json())
+    .catch(() => {})
+  }
+
+  deleteAllOrders = () => {
+    this.setState({
+      visible: false,
+    });
+    fetch(deleteAllOrderApi,{
+      method:'DELETE',
+      headers: myHeaders,
+      mode: 'cors',
+    })
+    .then((res)=>res.json())
+    .catch(() => {})
   }
 
   componentDidMount() {
@@ -92,7 +122,11 @@ class Home extends Component {
           {this.state.orderList.map((item) => (
             <tr key={item.name}>
               <th>{item.name}</th>
-              <th>{item.count}</th>
+              <th>
+                <button onClick={() => this.addProduct(item)}>+</button>
+                {item.count}
+                <button>-</button>
+              </th>
               <th><button>删除</button></th>
             </tr>
           ))}
@@ -112,7 +146,7 @@ class Home extends Component {
         <Modal
           title="购物车"
           visible={this.state.visible}
-          onCancel={this.handleOk}
+          onCancel={this.deleteAllOrders}
           onOk={this.handleOk}
           okText="立即下单"
           cancelText="清空"

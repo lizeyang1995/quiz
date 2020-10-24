@@ -35,4 +35,22 @@ public class OrderController {
         List<OrderPo> allOrders = orderService.findAllOrders();
         return ResponseEntity.ok(allOrders);
     }
+
+    @DeleteMapping("/order/{productName}")
+    public ResponseEntity deleteOrder(@PathVariable String productName) {
+        orderService.deleteOrder(productName);
+        return ResponseEntity.created(null).build();
+    }
+
+    @DeleteMapping("/orders/{productName}")
+    public ResponseEntity deleteOrders(@PathVariable String productName) {
+        orderService.deleteOrders(productName);
+        return ResponseEntity.created(null).build();
+    }
+
+    @DeleteMapping("/orders")
+    public ResponseEntity deleteAllOrders() {
+        orderService.deleteAllOrders();
+        return ResponseEntity.created(null).build();
+    }
 }

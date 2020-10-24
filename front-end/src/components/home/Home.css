@@ -17,4 +17,11 @@
 
 .home-body section p {
   color: dimgray;
+  margin-left: 20px;
+  text-align: left;
+}
+
+h3 {
+  margin-left: 20px;
+  text-align: left;
 }

@@ -39,4 +39,16 @@ public class OrderService {
                         })
                 .collect(Collectors.toList());
     }
+
+    public void deleteOrder(String productName) {
+
+    }
+
+    public void deleteOrders(String productName) {
+
+    }
+
+    public void deleteAllOrders() {
+
+    }
 }
