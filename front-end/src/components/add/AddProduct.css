@@ -1,0 +1,45 @@
+.background {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.add-product {
+  background-color: white;
+  padding: 20px 0 100px 0px;
+}
+
+.add-product section {
+  padding: 20px;
+}
+
+.add-product span {
+  color: red;
+  font-size: 20px;
+  float: left;
+}
+
+.add-product h3 {
+  float: left;
+  margin: 0;
+}
+
+.add-product input {
+  display: block;
+  padding: 5px;
+  width: 100%;
+}
+
+.add-product button {
+  zoom: 150%;
+  background-color: lightblue;
+  color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+}
+
+.add-product footer {
+  padding: 40px;
+}

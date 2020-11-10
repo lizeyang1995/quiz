@@ -78,6 +78,17 @@ class Home extends Component {
     .catch(() => {})
   }
 
+  reduceProduct = (product) => {
+    const deleteProductApi = addOrderApi + `/${product.name}`
+    fetch(deleteProductApi,{
+      method:'DELETE',
+      headers: myHeaders,
+      mode: 'cors'
+    })
+    .then((res)=>res.json())
+    .catch(() => {})
+  }
+
   deleteAllOrders = () => {
     this.setState({
       visible: false,
@@ -125,7 +136,7 @@ class Home extends Component {
               <th>
                 <button onClick={() => this.addProduct(item)}>+</button>
                 {item.count}
-                <button>-</button>
+                <button onClick={() => this.reduceProduct(item)}>-</button>
               </th>
               <th><button>删除</button></th>
             </tr>
