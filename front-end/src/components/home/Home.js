@@ -74,7 +74,7 @@ class Home extends Component {
         count:1,
       })
     })
-    .then((res)=>res.json())
+    .then(() => this.getAllOrder())
     .catch(() => {})
   }
 
@@ -85,7 +85,7 @@ class Home extends Component {
       headers: myHeaders,
       mode: 'cors'
     })
-    .then((res)=>res.json())
+    .then(() => this.getAllOrder())
     .catch(() => {})
   }
 
