@@ -10,12 +10,13 @@ let myHeaders = new Headers({
 });
 let api = 'http://localhost:8080/products';
 const cartProductApi = 'http://localhost:8080/cartProducts';
+const orderApi = 'http://localhost:8080/orders'
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       product: [{ name: '', price: '', unit: '', url: '' }],
-      orderList: '',
+      cartProductsList: '',
       visible: false
     }
   }
@@ -30,7 +31,7 @@ class Home extends Component {
     .then((data)=>{
       const newOrders = this.mergeSameOrder(data)
       this.setState({
-        orderList:newOrders,
+        cartProductsList:newOrders,
         visible: true
       })
     })
@@ -59,6 +60,17 @@ class Home extends Component {
     this.setState({
       visible: false,
     });
+    // fetch(orderApi,{
+    //   method:'POST',
+    //   headers: myHeaders,
+    //   mode: 'cors',
+    //   body: JSON.stringify({
+    //     name:product.name,
+    //     price:product.price,
+    //     unit:product.unit,
+    //     count:1,
+    //   })
+    // })
   }
 
   addProduct = (product) => {
@@ -74,6 +86,9 @@ class Home extends Component {
       })
     })
     .then(() => this.getAllOrder())
+    .then(() => {
+      console.log('cartProductsList:', this.state.cartProductsList)
+    })
     .catch(() => {})
   }
 
@@ -109,6 +124,11 @@ class Home extends Component {
       mode: 'cors',
     })
     .then((res)=>res.json())
+    .then(() => {
+      this.setState({
+        cartProductsList: '',
+      })
+    })
     .catch(() => {})
   }
 
@@ -128,7 +148,7 @@ class Home extends Component {
 
   render() {
     const orders = () => {
-      if(this.state.orderList.length === 0) {
+      if(this.state.cartProductsList.length === 0) {
         return (<p>暂无商品，请添加商品</p>)
       } else {
         return (
@@ -140,7 +160,7 @@ class Home extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.state.orderList.map((item) => (
+          {this.state.cartProductsList.map((item) => (
             <tr key={item.name}>
               <th>{item.name}</th>
               <th>
