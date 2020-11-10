@@ -57,18 +57,23 @@ class Home extends Component {
   }
 
   createOrder = () => {
-    this.setState({
-      visible: false,
-    });
     fetch(orderApi,{
       method:'POST',
       headers: myHeaders,
       mode: 'cors',
       body: JSON.stringify(this.state.cartProductsList)
     })
-    .then((res)=>res.json())
-    .then(() => {
-      window.location.pathname = "/orders";
+    .then((res)=>{
+      this.setState({
+        visible: false,
+      });
+      if (res.status === 400) {
+        this.setState({
+          errorVisible: true,
+        });
+      } else {
+        window.location.pathname = "/orders";
+      }
     })
     .catch(() => {
       this.setState({
