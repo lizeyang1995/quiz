@@ -5,7 +5,7 @@ let myHeaders = new Headers({
   'Content-Type': 'application/json',
   'Accept': 'application/json',
 });
-let api = 'http://localhost:8080/cartProducts';
+const cartProductApi = 'http://localhost:8080/cartProducts';
 class Product extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class Product extends React.Component {
     this.setState({
       disableButton: true
     })
-    fetch(api,{
+    fetch(cartProductApi,{
       method:'POST',
       headers: myHeaders,
       mode: 'cors',

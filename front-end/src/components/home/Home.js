@@ -9,9 +9,7 @@ let myHeaders = new Headers({
   'Accept': 'application/json',
 });
 let api = 'http://localhost:8080/products';
-let getAllOrderApi = 'http://localhost:8080/cartProducts';
-let addOrderApi = 'http://localhost:8080/cartProducts';
-let deleteAllOrderApi = 'http://localhost:8080/cartProducts';
+const cartProductApi = 'http://localhost:8080/cartProducts';
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -23,7 +21,7 @@ class Home extends Component {
   }
 
   getAllOrder = () => {
-    fetch(getAllOrderApi,{
+    fetch(cartProductApi,{
       method:'GET',
       headers: myHeaders,
       mode: 'cors',
@@ -64,7 +62,7 @@ class Home extends Component {
   }
 
   addProduct = (product) => {
-    fetch(addOrderApi,{
+    fetch(cartProductApi,{
       method:'POST',
       headers: myHeaders,
       mode: 'cors',
@@ -80,7 +78,7 @@ class Home extends Component {
   }
 
   reduceProduct = (product) => {
-    const reduceProductApi = addOrderApi + `/${product.name}`
+    const reduceProductApi = cartProductApi + `/${product.name}`
     fetch(reduceProductApi,{
       method:'DELETE',
       headers: myHeaders,
@@ -91,7 +89,7 @@ class Home extends Component {
   }
 
   deleteProduct = (product) => {
-    const deleteProductApi = addOrderApi + `/${product.name}?allProduct=true`
+    const deleteProductApi = cartProductApi + `/${product.name}?allProduct=true`
     fetch(deleteProductApi,{
       method:'DELETE',
       headers: myHeaders,
@@ -105,7 +103,7 @@ class Home extends Component {
     this.setState({
       visible: false,
     });
-    fetch(deleteAllOrderApi,{
+    fetch(cartProductApi,{
       method:'DELETE',
       headers: myHeaders,
       mode: 'cors',
