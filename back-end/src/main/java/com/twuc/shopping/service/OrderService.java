@@ -40,7 +40,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteOrder(String productName) {
+    public void reduceProduct(String productName) {
         orderRepository.deleteByNameWithMaxId(productName);
     }
 

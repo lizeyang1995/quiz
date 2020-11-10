@@ -38,8 +38,8 @@ public class OrderController {
 
     @DeleteMapping("/order/{productName}")
     public ResponseEntity deleteOrder(@PathVariable String productName) {
-        orderService.deleteOrder(productName);
-        return ResponseEntity.created(null).build();
+        orderService.reduceProduct(productName);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/orders/{productName}")
