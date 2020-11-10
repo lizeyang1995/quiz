@@ -5,6 +5,7 @@ import com.twuc.shopping.domain.Order;
 import com.twuc.shopping.po.CartProductPo;
 import com.twuc.shopping.service.OrderService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,11 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createOrder(@RequestBody List<CartProduct> orders) {
-        if (Objects.isNull(orders)) {
-            throw new RuntimeException();
+    public ResponseEntity createOrder(@RequestBody List<CartProduct> orders) {
+        if (Objects.isNull(orders) || orders.size() == 0) {
+            return ResponseEntity.badRequest().build();
         }
         orderService.createOrder(orders);
+        return ResponseEntity.created(null).build();
     }
 }
