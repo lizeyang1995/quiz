@@ -46,15 +46,9 @@ public class OrderController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/orders/{productName}")
-    public ResponseEntity deleteOrders(@PathVariable String productName) {
-        orderService.deleteOrders(productName);
-        return ResponseEntity.created(null).build();
-    }
-
     @DeleteMapping("/orders")
     public ResponseEntity deleteAllOrders() {
         orderService.deleteAllOrders();
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.noContent().build();
     }
 }
