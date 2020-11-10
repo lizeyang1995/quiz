@@ -60,17 +60,12 @@ class Home extends Component {
     this.setState({
       visible: false,
     });
-    // fetch(orderApi,{
-    //   method:'POST',
-    //   headers: myHeaders,
-    //   mode: 'cors',
-    //   body: JSON.stringify({
-    //     name:product.name,
-    //     price:product.price,
-    //     unit:product.unit,
-    //     count:1,
-    //   })
-    // })
+    fetch(orderApi,{
+      method:'POST',
+      headers: myHeaders,
+      mode: 'cors',
+      body: JSON.stringify(this.state.cartProductsList)
+    })
   }
 
   addProduct = (product) => {
