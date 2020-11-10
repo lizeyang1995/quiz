@@ -45,7 +45,7 @@ public class CartService {
     }
 
     public void deleteAllOrders() {
-        cartRepository.deleteAll();
+        cartRepository.deleteAllProducts();
     }
 
     public void deleteProduct(String productName) {

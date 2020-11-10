@@ -12,12 +12,17 @@ import java.util.List;
 public interface CartRepository extends CrudRepository<CartProductPo, Integer> {
     @Modifying
     @Transactional
-    @Query(value = "delete from cart_list where id=(select id from ( select MAX(id) id from cart_list where name=(:name)) a)", nativeQuery = true)
+    @Query(value = "delete from cart_list where id=(select id from ( select MAX(id) id from cart_list where name=(:name) and order_po_id is null) a)", nativeQuery = true)
     void reduceByNameWithMaxId(@Param("name") String name);
     @Modifying
     @Transactional
-    @Query(value = "delete from cart_list where name=(:name)", nativeQuery = true)
+    @Query(value = "delete from cart_list where name=(:name) and order_po_id is null", nativeQuery = true)
     void deleteByName(@Param("name") String name);
     @Override
+    @Query(value = "select * from cart_list where order_po_id is null", nativeQuery = true)
     List<CartProductPo> findAll();
+    @Modifying
+    @Transactional
+    @Query(value = "delete from cart_list where order_po_id is null", nativeQuery = true)
+    void deleteAllProducts();
 }
