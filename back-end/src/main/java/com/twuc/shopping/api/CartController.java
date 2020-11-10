@@ -1,10 +1,9 @@
 package com.twuc.shopping.api;
 
-import com.twuc.shopping.domain.Order;
-import com.twuc.shopping.domain.Product;
-import com.twuc.shopping.po.OrderPo;
-import com.twuc.shopping.repository.OrderRepository;
-import com.twuc.shopping.service.OrderService;
+import com.twuc.shopping.domain.CartProduct;
+import com.twuc.shopping.po.CartProductPo;
+import com.twuc.shopping.repository.CartRepository;
+import com.twuc.shopping.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,40 +14,40 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
-public class OrderController {
+public class CartController {
     @Autowired
-    OrderRepository orderRepository;
+    CartRepository cartRepository;
     @Autowired
-    OrderService orderService;
+    CartService cartService;
 
-    @PostMapping("/order")
-    public ResponseEntity addOrder(@RequestBody @Valid Order order) {
+    @PostMapping("/cartProducts")
+    public ResponseEntity addOrder(@RequestBody @Valid CartProduct order) {
         if (Objects.isNull(order)) {
             throw new RuntimeException();
         }
-        orderService.addOrder(order);
+        cartService.addOrder(order);
         return ResponseEntity.created(null).build();
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/cartProducts")
     public ResponseEntity getAllOrders() {
-        List<OrderPo> allOrders = orderService.findAllOrders();
+        List<CartProductPo> allOrders = cartService.findAllOrders();
         return ResponseEntity.ok(allOrders);
     }
 
-    @DeleteMapping("/order/{productName}")
+    @DeleteMapping("/cartProducts/{productName}")
     public ResponseEntity deleteOrder(@PathVariable String productName, @RequestParam(required = false) boolean allProduct) {
         if (allProduct) {
-            orderService.deleteProduct(productName);
+            cartService.deleteProduct(productName);
         } else {
-            orderService.reduceProduct(productName);
+            cartService.reduceProduct(productName);
         }
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/orders")
+    @DeleteMapping("/cartProducts")
     public ResponseEntity deleteAllOrders() {
-        orderService.deleteAllOrders();
+        cartService.deleteAllOrders();
         return ResponseEntity.noContent().build();
     }
 }

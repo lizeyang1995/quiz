@@ -5,7 +5,7 @@ let myHeaders = new Headers({
   'Content-Type': 'application/json',
   'Accept': 'application/json',
 });
-let api = 'http://localhost:8080/order';
+let api = 'http://localhost:8080/cartProducts';
 class Product extends React.Component {
   constructor(props) {
     super(props);

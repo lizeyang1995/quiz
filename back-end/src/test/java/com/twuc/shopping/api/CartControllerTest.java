@@ -1,9 +1,9 @@
 package com.twuc.shopping.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.twuc.shopping.domain.Order;
-import com.twuc.shopping.po.OrderPo;
-import com.twuc.shopping.repository.OrderRepository;
+import com.twuc.shopping.domain.CartProduct;
+import com.twuc.shopping.po.CartProductPo;
+import com.twuc.shopping.repository.CartRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +23,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class OrderControllerTest {
+public class CartControllerTest {
     @Autowired
     MockMvc mockMvc;
     @Autowired
-    OrderRepository orderRepository;
+    CartRepository cartRepository;
     @BeforeEach
     void setUp() {
-        orderRepository.deleteAll();
+        cartRepository.deleteAll();
     }
 
     @Test
     void should_add_a_order() throws Exception {
-        Order order = Order.builder()
+        CartProduct order = CartProduct.builder()
                             .name("可乐")
                             .price(BigDecimal.valueOf(5.00))
                             .unit("瓶")
@@ -43,7 +43,7 @@ public class OrderControllerTest {
                             .build();
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(order);
-        mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/cartProducts").content(jsonString).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
 
@@ -51,13 +51,13 @@ public class OrderControllerTest {
     void should_throw_error_when_give_null() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(null);
-        mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/cartProducts").content(jsonString).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void should_throw_error_when_value_is_null() throws Exception {
-        Order order = Order.builder()
+        CartProduct order = CartProduct.builder()
                 .name("可乐")
                 .price(BigDecimal.valueOf(5.00))
                 .unit(null)
@@ -65,20 +65,20 @@ public class OrderControllerTest {
                 .build();
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonString = objectMapper.writeValueAsString(order);
-        mockMvc.perform(post("/order").content(jsonString).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/cartProducts").content(jsonString).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     void should_get_all_orders() throws Exception {
-        OrderPo order = OrderPo.builder()
+        CartProductPo order = CartProductPo.builder()
                 .name("可乐")
                 .price(BigDecimal.valueOf(5.00))
                 .unit("瓶")
                 .count(BigInteger.valueOf(1))
                 .build();
-        orderRepository.save(order);
-        mockMvc.perform(get("/orders"))
+        cartRepository.save(order);
+        mockMvc.perform(get("/cartProducts"))
                 .andExpect(jsonPath("$[0].name", is("可乐")))
                 .andExpect(jsonPath("$[0].price", is(5.00)))
                 .andExpect(jsonPath("$[0].unit", is("瓶")))

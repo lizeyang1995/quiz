@@ -14,7 +14,7 @@ import java.math.BigInteger;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class CartProduct {
     @NotNull
     @Valid
     private String name;

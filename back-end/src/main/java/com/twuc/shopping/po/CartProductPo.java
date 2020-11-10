@@ -13,12 +13,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Entity
-@Table(name = "orderList")
+@Table(name = "cartList")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderPo {
+public class CartProductPo {
     @Id
     @GeneratedValue
     private int id;

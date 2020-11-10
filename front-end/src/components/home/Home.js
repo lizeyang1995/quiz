@@ -9,9 +9,9 @@ let myHeaders = new Headers({
   'Accept': 'application/json',
 });
 let api = 'http://localhost:8080/products';
-let getAllOrderApi = 'http://localhost:8080/orders';
-let addOrderApi = 'http://localhost:8080/order';
-let deleteAllOrderApi = 'http://localhost:8080/orders';
+let getAllOrderApi = 'http://localhost:8080/cartProducts';
+let addOrderApi = 'http://localhost:8080/cartProducts';
+let deleteAllOrderApi = 'http://localhost:8080/cartProducts';
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -57,6 +57,7 @@ class Home extends Component {
   }
 
   handleOk = (e) => {
+    window.location.pathname = "/orders";
     this.setState({
       visible: false,
     });
