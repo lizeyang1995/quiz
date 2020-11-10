@@ -17,7 +17,8 @@ class Home extends Component {
     this.state = {
       product: [{ name: '', price: '', unit: '', url: '' }],
       cartProductsList: '',
-      visible: false
+      visible: false,
+      errorVisible: false
     }
   }
 
@@ -55,8 +56,7 @@ class Home extends Component {
     return newOrders
   }
 
-  handleOk = (e) => {
-    window.location.pathname = "/orders";
+  createOrder = () => {
     this.setState({
       visible: false,
     });
@@ -66,6 +66,21 @@ class Home extends Component {
       mode: 'cors',
       body: JSON.stringify(this.state.cartProductsList)
     })
+    .then((res)=>res.json())
+    .then(() => {
+      window.location.pathname = "/orders";
+    })
+    .catch(() => {
+      this.setState({
+        errorVisible: true,
+      });
+    })
+  }
+
+  errorHandleOk = () => {
+    this.setState({
+      errorVisible: false,
+    });
   }
 
   addProduct = (product) => {
@@ -81,9 +96,6 @@ class Home extends Component {
       })
     })
     .then(() => this.getAllOrder())
-    .then(() => {
-      console.log('cartProductsList:', this.state.cartProductsList)
-    })
     .catch(() => {})
   }
 
@@ -121,7 +133,7 @@ class Home extends Component {
     .then((res)=>res.json())
     .then(() => {
       this.setState({
-        cartProductsList: '',
+        cartProductsList: [],
       })
     })
     .catch(() => {})
@@ -183,11 +195,19 @@ class Home extends Component {
           title="购物车"
           visible={this.state.visible}
           onCancel={this.deleteAllOrders}
-          onOk={this.handleOk}
+          onOk={this.createOrder}
           okText="立即下单"
           cancelText="清空"
         >
           {orders()}
+        </Modal>
+        <Modal
+          title="提示"
+          visible={this.state.errorVisible}
+          onOk={this.errorHandleOk}
+          onCancel={this.errorHandleOk}
+        >
+          <p>创建订单失败</p>
         </Modal>
       </div>
     );
