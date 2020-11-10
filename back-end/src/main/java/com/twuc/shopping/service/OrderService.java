@@ -41,7 +41,7 @@ public class OrderService {
     }
 
     public void deleteOrder(String productName) {
-
+        orderRepository.deleteByNameWithMaxId(productName);
     }
 
     public void deleteOrders(String productName) {
