@@ -6,12 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @Table(name = "orderList")
@@ -22,10 +20,7 @@ import java.math.BigInteger;
 public class OrderPo {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private int id;
-    private String name;
-    private BigDecimal price;
-    private String unit;
-    private BigInteger count;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "orderPo")
+    private List<CartProductPo> cartProductPos;
 }

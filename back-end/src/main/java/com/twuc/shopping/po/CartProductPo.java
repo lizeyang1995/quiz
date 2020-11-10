@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -26,4 +23,6 @@ public class CartProductPo {
     private BigDecimal price;
     private String unit;
     private BigInteger count;
+    @ManyToOne
+    private OrderPo orderPo;
 }
