@@ -41,7 +41,7 @@ public class OrderService {
     }
 
     public void reduceProduct(String productName) {
-        orderRepository.deleteByNameWithMaxId(productName);
+        orderRepository.reduceByNameWithMaxId(productName);
     }
 
     public void deleteOrders(String productName) {
@@ -50,5 +50,9 @@ public class OrderService {
 
     public void deleteAllOrders() {
 
+    }
+
+    public void deleteProduct(String productName) {
+        orderRepository.deleteByName(productName);
     }
 }

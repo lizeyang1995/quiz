@@ -13,7 +13,11 @@ public interface OrderRepository extends CrudRepository<OrderPo, Integer> {
     @Modifying
     @Transactional
     @Query(value = "delete from order_list where id=(select id from ( select MAX(id) id from order_list where name=(:name)) a)", nativeQuery = true)
-    void deleteByNameWithMaxId(@Param("name") String name);
+    void reduceByNameWithMaxId(@Param("name") String name);
+    @Modifying
+    @Transactional
+    @Query(value = "delete from order_list where name=(:name)", nativeQuery = true)
+    void deleteByName(@Param("name") String name);
     @Override
     List<OrderPo> findAll();
 }

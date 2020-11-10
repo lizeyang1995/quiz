@@ -37,8 +37,12 @@ public class OrderController {
     }
 
     @DeleteMapping("/order/{productName}")
-    public ResponseEntity deleteOrder(@PathVariable String productName) {
-        orderService.reduceProduct(productName);
+    public ResponseEntity deleteOrder(@PathVariable String productName, @RequestParam(required = false) boolean allProduct) {
+        if (allProduct) {
+            orderService.deleteProduct(productName);
+        } else {
+            orderService.reduceProduct(productName);
+        }
         return ResponseEntity.noContent().build();
     }
 
