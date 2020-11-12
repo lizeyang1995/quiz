@@ -19,8 +19,10 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderPo {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    private int id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(columnDefinition = "VARCHAR(36)")
+    private String id;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "orderPo")
     private List<CartProductPo> cartProductPos;
 }
